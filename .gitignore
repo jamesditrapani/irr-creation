@@ -1,0 +1,44 @@
+*.db
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+env-acg/
+server-env/
+lab/
+logs/
+
+# C extensions
+*.so
+
+/build/
+/test-env/
+/.cache/
+/.coverage*
+/.eggs/
+/.idea/
+/.mypy_cache/
+/.pytest_cache/
+/.tox/
+/.venv/
+/dist/
+/doc/build/
+/logs/
+/*.egg-info/
+__pycache__/
+/monkeytype.sqlite3
+*.pyc
+test.txt
+
+# Emacs things
+*~
+\#*\#
+.\#*
+.org-id-locations
+*_archive
+*_flymake.*
+.cask/
+flycheck_*.el
+.projectile
+.dir-locals.el
