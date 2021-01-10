@@ -18,5 +18,10 @@ setuptools.setup(
         "Development Status :: 3 - Alpha",
         "Topic :: System :: Networking"
     ],
+    entry_points={
+      'console_scripts': [
+        'irrgenerator = irrgenerator:main',
+      ],
+    },
     python_requires='>=3.6',
 )

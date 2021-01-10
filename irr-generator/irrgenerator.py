@@ -164,9 +164,11 @@ def print_output(response: dict) -> None:
                 print(f'{key}: {item}')
             print('')
 
+def main() -> None:
+    """
+        Entry point for PyPi package & __main__
 
-if __name__ == '__main__':
-    # Logic called when executed via CLI directly
+    """
     import argparse
 
     parser_help = """
@@ -216,3 +218,7 @@ ASN: AS number that will be set in the Origin ASN field (e.g. AS13335)
     response = code.create()
 
     print_output(response)
+
+if __name__ == '__main__':
+    # Logic called when executed via CLI directly
+    main()
