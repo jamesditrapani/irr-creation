@@ -1,5 +1,8 @@
 # IRR Generator
-## Description
+> Generate IRR Route Objects at scale quickly and without error
+
+![Build][build]
+
 Lightweight Python script designed to automate the generation of IRR Objects. Essential for the toolkit of any Network Engineers maintaining route objects.
 
 ## How
@@ -31,6 +34,9 @@ optional arguments:
                         IRR Source set in route object
 ```
 
+#### Example
+
+
 ### Python API
 IRR Generator can act as a Python API if needed. When instantiating `IRRGenerator()`, some form of data must be passed. This can be via a relative/full file path expected in `file_name` or via a nested list of prefix/asn combos expected in `prefixes`.
 
@@ -54,3 +60,20 @@ IRR Generator can act as a Python API if needed. When instantiating `IRRGenerato
 }
 
 ```
+
+## Release History
+* 0.0.1
+    * Work in progress
+
+## Meta
+
+James Di Trapani – [@jamesditrapani](https://twitter.com/jamesditrapani) – james[at]ditrapani.com.au
+
+[https://github.com/jamesditrapani/](https://github.com/jamesditrapani/)
+
+
+<!-- Markdown link & img dfn's -->
+[build]: https://img.shields.io/github/checks-status/jamesditrapani/irr-object-creation/master
+
+## License
+[GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
