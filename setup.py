@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="irr-generator", 
-    version="0.0.3",
+    version="0.0.4",
     author="James Di Trapani",
     author_email="james@ditrapani.com.au",
     description="Generate IRR Route Objects at scale quickly and without error",
