@@ -12,7 +12,7 @@ By passing a list of Supernets & Origin ASNs, IRR Generator will auto expand the
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install IRR Generator.
 ```bash
 pip install irr-generator
 ```
@@ -37,10 +37,65 @@ optional arguments:
 ```
 
 #### Example
+```bash
+(test-env) ╭─jamesditrapani@maximus ~/development/irr-generator
+╰─$ irrgenerator -f subnets.txt -e "myemail@example.com" -m "MAINT-04" -s "NTT"
+route: 1.1.1.0/24
+descr: IANA-ASSIGNED
+origin: AS444
+notify: myemail@example.com
+mnt-by: MAINT-04
+changed: myemail@example.com 20210111
+source: NTT
+```
+
 
 
 ### Python API
-IRR Generator can act as a Python API if needed. When instantiating `IRRGenerator()`, some form of data must be passed. This can be via a relative/full file path expected in `file_name` or via a nested list of prefix/asn combos expected in `prefixes`.
+IRR Generator can act as a Python API if needed. When instantiating `IRRGenerator()`, some form of data must be passed. This can be via a relative/full file path expected in `file_name` or via a dictionary of prefix/asn combos expected in `prefixes`. On init of the `IRRGenerator()` class it is also important that you pass variables to define `MAINT_OBJECT`, `NOTIFY_EMAIL` & `IRR_SOURCE` that are used when returning formatted data.
+
+#### Examples
+
+##### File Example
+```python
+from irrgenerator.irrgenerator import IRRGenerator
+
+irr = IRRGenerator(file_name='subnets.txt')
+irr.NOTIFY_EMAIL = 'example1@example.com'
+irr.MAINT_OBJECT = 'MY-MAINT-01'
+irr.IRR_SOURCE = 'RADB'
+
+response = irr.create()
+
+print(response)
+```
+
+```bash
+{'1.1.1.0/24': {1: {'route': '1.1.1.0/24', 'descr': 'OVERTHEWIRE-AS-AP', 'origin': 'AS9268', 'notify': 'noc@example.com', 'mnt-by': 'MAINT-EXAMPLE-01', 'changed': 'noc@example.com 20210111', 'source': 'EXAMPLE-NTT'}}}
+```
+
+#### Dict Example
+```python
+from irrgenerator.irrgenerator import IRRGenerator
+
+myprefixes = {
+  '1.1.1.0/24': 'AS111',
+  '2.2.2.0/23': 'AS123'
+}
+
+irr = IRRGenerator(prefixes=myprefixes)
+irr.NOTIFY_EMAIL = 'test@example.com'
+irr.MAINT_OBJECT = 'MY-MAINT-02'
+irr.IRR_SOURCE = 'NTT'
+
+response = irr.create()
+print(response)
+```
+
+```bash
+{'1.1.1.0/24': {1: {'route': '1.1.1.0/24', 'descr': 'BOSTONU-AS', 'origin': 'AS111', 'notify': 'noc@example.com', 'mnt-by': 'MAINT-EXAMPLE-01', 'changed': 'noc@example.com 20210111', 'source': 'EXAMPLE-NTT'}}, '2.2.2.0/23': {1: {'route': '2.2.2.0/23', 'descr': 'LOGAIRCOMNET-AS', 'origin': 'AS123', 'notify': 'noc@example.com', 'mnt-by': 'MAINT-EXAMPLE-01', 'changed': 'noc@example.com 20210111', 'source': 'EXAMPLE-NTT'}, 2: {'route': '2.2.2.0/24', 'descr': 'LOGAIRCOMNET-AS', 'origin': 'AS123', 'notify': 'noc@example.com', 'mnt-by': 'MAINT-EXAMPLE-01', 'changed': 'noc@example.com 20210111', 'source': 'EXAMPLE-NTT'}, 3: {'route': '2.2.3.0/24', 'descr': 'LOGAIRCOMNET-AS', 'origin': 'AS123', 'notify': 'noc@example.com', 'mnt-by': 'MAINT-EXAMPLE-01', 'changed': 'noc@example.com 20210111', 'source': 'EXAMPLE-NTT'}}}
+```
+
 
 #### Response Schema
 ```python
@@ -60,12 +115,10 @@ IRR Generator can act as a Python API if needed. When instantiating `IRRGenerato
 
 ```
 
-### Examples
-
 
 ## Release History
-* 0.0.1
-    * Work in progress
+* 0.0.4
+    * Beta
 
 ## Meta
 
