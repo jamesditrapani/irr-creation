@@ -192,8 +192,7 @@ ASN: AS number that will be set in the Origin ASN field (e.g. AS13335)
         usage=parser_help)
 
     parser.add_argument('-f', '--file_name',
-                        required=False,
-                        default='subnets.txt',
+                        required=True,
                         help='Full or Relative path to file')
 
     parser.add_argument('-e', '--notify_email',
